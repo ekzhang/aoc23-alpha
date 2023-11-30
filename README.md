@@ -1,40 +1,40 @@
-# aoc21-alpha
+# aoc23-alpha
 
 _Advent of Code 2023 solved with 25 languages, in alphabetical order._
 
-Languages are how we express and develop computational ideas; a dialogue between the programmer & designer. I know most of the popular ones, so I picked some cool specimens that I'm curious about this year.
+Languages are how we express and develop computational ideas; a dialogue between the programmer & designer. I know most of the popular ones, so I picked some cool specimens that I'm curious about.
 
-I did a similar thing once before [in 2021](https://github.com/ekzhang/aoc21-alpha), but that challenge had relatively tamer languages. This year is a bit more “out there.”
+I did a similar thing once before [in 2021](https://github.com/ekzhang/aoc21-alpha), but that challenge had relatively tamer languages. This year will be a little more “out there.”
 
 ## Schedule
 
-As usual, the hardest problems are at the end, so it's a balance between idea-newness / coolness, with the practicality of me actually being able to solve the challenges.
+As usual, the hardest problems are at the end, so it's a balance between coolness and the practicality of me actually being able to solve the challenges.
 
-1. A is for **ARM64 Assembly** — [ARMv8.5-A](https://en.wikipedia.org/wiki/AArch64#ARMv8.5-A)
-2. B is for **BQN** — _finally, an APL for your flying saucer_
-3. C is for **Carp** — _a statically typed lisp, without GC, for real-time applications_
-4. D is for **Dafny** — _a verification-ready programming language_
-5. E is for **Erlang** — _practical functional programming for a parallel world_
-6. F is for **Flix** — _polymorphic effect system and first-class Datalog constraints_
-7. G is for **Gleam** — _a friendly language for building type-safe systems that scale_
-8. H is for **Hylo** — _mutable value semantics and generic programming_
-9. I is for **Io** — _dynamic prototypes in the same realm as Smalltalk and Self_
-10. J is for **Java bytecode** — [JASM assembler](https://github.com/roscopeco/jasm)
-11. K is for **Koka** — _functional language with effects_
-12. L is for **Lean** — _interactive theorem prover_
-13. M is for **Mojo** — _Python with systems and metaprogramming features_
-14. N is for **Nim** — _compiled, garbage-collected systems programming_
-15. O is for **OCaml** — [OCaml 5.1.0](https://ocaml.org/releases/5.1.0)
-16. P is for **Pony** — _capabilities-secure, high-performance actors_
-17. Q is for **Quadro** — [Rust-CUDA](https://github.com/Rust-GPU/Rust-CUDA) (yes, this is a stretch)
-18. R is for **Raku** — _formerly known as Perl 6_
-19. S is for **Swift** — [Swift 5.9](https://www.swift.org/blog/swift-5.9-released/)
-20. T is for **Tcl** — _a very simple programming language_
-21. U is for **Unison** — _purely functional language for distributed systems_
-22. V is for **Vale** — _single ownership with constraint references for memory safety_
-23. W is for **WebAssembly** — [Wasmtime v15](https://wasmtime.dev/) with Rust
-24. Y is for **Yuescript** — _a Moonscript dialect that compiles to Lua_
-25. Z is for **Zig** — _general-purpose systems, without garbage collection_
+1. `A` is for **ARM64 Assembly** — [ARMv8.5-A](https://en.wikipedia.org/wiki/AArch64#ARMv8.5-A)
+2. `B` is for **BQN** — _finally, an APL for your flying saucer_
+3. `C` is for **Carp** — _a statically typed lisp, without GC, for real-time applications_
+4. `D` is for **Dafny** — _a verification-ready programming language_
+5. `E` is for **Erlang** — _practical functional programming for a parallel world_
+6. `F` is for **Flix** — _polymorphic effect system and first-class Datalog constraints_
+7. `G` is for **Gleam** — _a friendly language for building type-safe systems that scale_
+8. `H` is for **Hylo** — _mutable value semantics and generic programming_
+9. `I` is for **Io** — _dynamic prototypes in the same realm as Smalltalk and Self_
+10. `J` is for **Java bytecode** — [JASM assembler](https://github.com/roscopeco/jasm)
+11. `K` is for **Koka** — _functional language with effects_
+12. `L` is for **Lean** — _interactive theorem prover_
+13. `M` is for **Mojo** — _Python with systems and metaprogramming features_
+14. `N` is for **Nim** — _compiled, garbage-collected systems programming_
+15. `O` is for **OCaml** — [OCaml 5.1.0](https://ocaml.org/releases/5.1.0)
+16. `P` is for **Pony** — _capabilities-secure, high-performance actors_
+17. `Q` is for **Quadro** — [Rust-CUDA](https://github.com/Rust-GPU/Rust-CUDA) (yes, this is a stretch)
+18. `R` is for **Raku** — _formerly known as Perl 6_
+19. `S` is for **Swift** — [Swift 5.9](https://www.swift.org/blog/swift-5.9-released/)
+20. `T` is for **Tcl** — _a very simple programming language_
+21. `U` is for **Unison** — _purely functional language for distributed systems_
+22. `V` is for **Vale** — _single ownership with constraint references for memory safety_
+23. `W` is for **WebAssembly** — [Wasmtime v15](https://wasmtime.dev/) with Rust
+24. `Y` is for **Yuescript** — _a Moonscript dialect that compiles to Lua_
+25. `Z` is for **Zig** — _general-purpose systems, without garbage collection_
 
 We're skipping X because the only reasonable language I could find was x86-64 assembly, and I'm definitely not solving day 23 in assembly!
 
