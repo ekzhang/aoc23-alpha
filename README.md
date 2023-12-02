@@ -69,5 +69,6 @@ This takes about a minute on my computer, since it needs to compile code in addi
 This is my runtime environment for each language on macOS Ventura v13.2.1, M1 / ARM64 processor, with Rosetta 2 and Xcode CLT. I only used languages that I could install on my own machine; these instructions aren't guaranteed to work on other operating systems or processor architectures.
 
 - **Day 1:** Apple clang version 14.0.3, target arm64-apple-darwin22.3.0.
+- **Day 2:** [CBQN v0.4.0](https://github.com/dzaima/CBQN), vendored as submodule and built with Make.
 
 Note that while exact version numbers are provided above, the code will likely work with newer versions of these languages as well. Also, assume a global dependency on Python 3.11+, Node v20, and NPM v9.

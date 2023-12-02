@@ -1,0 +1,6 @@
+[submodule "day2/CBQN"]
+	path = day2/CBQN
+	url = https://github.com/dzaima/CBQN
+[submodule "day2/bqn-libs"]
+	path = day2/bqn-libs
+	url = https://github.com/mlochbaum/bqn-libs
