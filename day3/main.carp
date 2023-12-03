@@ -1,0 +1,9 @@
+(use IO)
+(use Int)
+(use String)
+
+;; (defn )
+
+(defn-do main []
+  (println &(trim &(get-line)))
+  (println &(trim &(get-line))))

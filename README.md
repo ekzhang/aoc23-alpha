@@ -70,5 +70,6 @@ This is my runtime environment for each language on macOS Ventura v13.2.1, M1 / 
 
 - **Day 1:** Apple clang version 14.0.3, target arm64-apple-darwin22.3.0.
 - **Day 2:** [CBQN v0.4.0](https://github.com/dzaima/CBQN), vendored as submodule and built with Make.
+- **Day 3:** [Carp v0.5.5](https://github.com/carp-lang/Carp), binary installation in script.
 
 Note that while exact version numbers are provided above, the code will likely work with newer versions of these languages as well. Also, assume a global dependency on Python 3.11+, Node v20, and NPM v9.
