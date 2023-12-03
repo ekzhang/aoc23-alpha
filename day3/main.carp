@@ -1,9 +1,171 @@
+;; Carp aspires to mix the performance and type-safety of Rust with the syntax and macro flexibility
+;; of Clojure, but at the moment, it seems like a slightly buggy compiled Lisp.
+;;
+;; Despite dynamic dispatch & interfaces, it still feels more like "C + ownership" than Rust since
+;; it's barebones with respect to features. In some ways, it's kind of like
+;; Carp:Scheme ~ Cython:CPython.
+;;
+;; Note that I have generally never been good at writing nontrivial Lisp code. It comes out very
+;; stilted. The biggest annoyance with Carp for me so far was mismatching parentheses, since the
+;; parser is not able to make good error messages for that! Also, Carp is kind of verbose, and a lot
+;; of it felt like a worse version of the same code I would write in C: just with shittier syntax.
+;;
+;; Carp also copies all of the syntax and annoyances of ownership in Rust, like dealing with
+;; references and @/& everywhere. But without any of the benefits. And the stdlib is inconsistent
+;; about when it uses references vs copies, and `Maybe` vs runtime errors. :/
+;;
+;; Still, it's a cool language and certainly very unique! I'm curious how its type inference and
+;; generics / static dispatch works (seems to be painless).
+
+(use Array)
+(use Char)
 (use IO)
 (use Int)
+(use Maybe)
 (use String)
 
-;; (defn )
+
+(deftype Part [row Int, col1 Int, col2 Int, value Int])
+
+
+(defn display [value]
+  (println &(str value)))
+
+
+(doc read-input "Read input from stdin and return an array of lines.")
+(sig read-input (Fn [] (Array String)))
+(defn read-input []
+  (let-do [line (chomp &(get-line))
+           grid []]
+    (while-do (not (empty? &line))
+      (push-back! &grid @&line)
+      (set! line (chomp &(get-line))))
+    grid))
+
+
+(doc get-cell "Get the character at the given row and column in the grid.")
+(sig get-cell (Fn [(Ref (Array String)) Int Int] (Maybe Char)))
+(defn get-cell [grid row col]
+  ;; Very weird how char-at doesn't do bounds checking, but nth does...
+  (match (nth grid row)
+    (Just r) (cond
+      (and (>= col 0) (< col (length &r))) (Just (char-at &r col))
+      (Nothing))
+    (Nothing) (Nothing)))
+
+
+(doc is-symbol? "Return true if the character is a symbol.")
+(sig is-symbol? (Fn [Char] Bool))
+(defn is-symbol? [c]
+  (not (or (num? c) (= c \.))))
+
+
+(doc has-symbol-neighbor? "Return true if the cell has a neighbor with a symbol.")
+(sig has-symbol-neighbor? (Fn [(Ref (Array String)) Int Int] Bool))
+(defn has-symbol-neighbor? [grid row col]
+  (any?
+    &(fn [x] (is-symbol? (from @x \.)))
+    &[
+      (get-cell grid (- row 1) (- col 1))
+      (get-cell grid (- row 1) col)
+      (get-cell grid (- row 1) (+ col 1))
+      (get-cell grid row (- col 1))
+      (get-cell grid row (+ col 1))
+      (get-cell grid (+ row 1) (- col 1))
+      (get-cell grid (+ row 1) col)
+      (get-cell grid (+ row 1) (+ col 1))]))
+
+
+(doc find-parts "Find all numbers in the grid next to a symbol.")
+(sig find-parts (Fn [(Ref (Array String))] (Array Part)))
+(defn find-parts [grid]
+  ;; this function is pretty imperative C-like because the functional programming features of
+  ;; Carp are a little too impoverished to write it more idiomatically
+  (let-do [parts []
+           i 0
+           j 0
+           current-num -1
+           current-num-col1 -1
+           current-num-sym false]
+
+    (while-do (< i (length grid))
+      (set! j 0)
+      (set! current-num -1)
+      (while-do (< j (length (unsafe-nth grid i)))
+        (let [ch (unsafe-from (get-cell grid i j))]
+          (if (num? ch)
+            ;; If the character is a number.
+            (do
+              (if (= current-num -1)
+                (do
+                  (set! current-num 0)
+                  (set! current-num-col1 j)
+                  (set! current-num-sym false))
+                ())
+              (set! current-num (+ (* current-num 10) (- (to-int ch) 48)))
+              (set! current-num-sym (or current-num-sym (has-symbol-neighbor? grid i j))))
+
+            ;; If the character is not a number.
+            (if (not (= current-num -1))
+              (do
+                (if current-num-sym (push-back! &parts (Part.init i current-num-col1 j current-num)) ())
+                (set! current-num -1))
+              ())))
+
+        (set! j (+ j 1)))
+
+      (if (not (= current-num -1))
+        (if current-num-sym (push-back! &parts (Part.init i current-num-col1 j current-num)) ())
+        ())
+
+      (set! i (+ i 1)))
+
+    parts))
+
+
+(doc is-adjacent "Return true if the a part is adjacent to a cell.")
+(sig is-adjacent (Fn [(Ref Part) Int Int] Bool))
+(defn is-adjacent [part row col]
+  (and
+    (and (>= row (- @(Part.row part) 1)) (<= row (+ @(Part.row part) 1)))
+    (and (>= col (- @(Part.col1 part) 1)) (< col (+ @(Part.col2 part) 1)))))
+
+
+(doc gear-ratios "Get all products of two part numbers neighboring a * symbol.")
+(sig gear-ratios (Fn [(Ref (Array String)) (Ref (Array Part))] (Array Int)))
+(defn gear-ratios [grid parts]
+  ;; this function is pretty imperative C-like because the functional programming features of
+  ;; Carp are a little too impoverished to write it more idiomatically
+  (let-do [gears []
+           i 0
+           j 0]
+
+    (while-do (< i (length grid))
+      (set! j 0)
+      (while-do (< j (length (unsafe-nth grid i)))
+        (let [ch (unsafe-from (get-cell grid i j))]
+          (if (= ch \*)
+            (let [adjacent-parts (copy-filter &(fn [x] (is-adjacent x i j)) parts)]
+              (if (= (length &adjacent-parts) 2)
+                (push-back! &gears
+                  (* @(Part.value (unsafe-nth &adjacent-parts 0))
+                     @(Part.value (unsafe-nth &adjacent-parts 1))))
+                ()))
+            ()))
+
+        (set! j (+ j 1)))
+      (set! i (+ i 1)))
+
+    gears))
+
 
 (defn-do main []
-  (println &(trim &(get-line)))
-  (println &(trim &(get-line))))
+  (let-do [grid (read-input)
+           parts (find-parts &grid)]
+    ;; (display &grid)
+
+    ;; Part 1
+    (display (sum &(copy-map &(comp copy Part.value) &parts)))
+
+    ;; Part 2
+    (display (sum &(gear-ratios &grid &parts)))))
