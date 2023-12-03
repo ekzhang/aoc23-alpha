@@ -8,3 +8,7 @@ main
 # Day 3
 carp-*/
 out/
+
+# Day 4
+main-java/
+main.jar
