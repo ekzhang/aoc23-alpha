@@ -7,4 +7,9 @@ if [ ! -d carp-v0.5.5-x86_64-macos ]; then
 fi
 
 export CARP_DIR="$(pwd)/carp-v0.5.5-x86_64-macos"
-$CARP_DIR/bin/carp -x main.carp
+
+if [ "main.carp" -nt "out/Untitled" ]; then
+  $CARP_DIR/bin/carp -x main.carp
+else
+  out/Untitled
+fi
