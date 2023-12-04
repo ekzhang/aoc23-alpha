@@ -1,0 +1,7 @@
+{
+  "name": "day4",
+  "private": true,
+  "dependencies": {
+    "bignumber.js": "^9.1.2"
+  }
+}

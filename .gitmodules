@@ -4,6 +4,3 @@
 [submodule "day2/bqn-libs"]
 	path = day2/bqn-libs
 	url = https://github.com/mlochbaum/bqn-libs
-[submodule "day4/libraries"]
-	path = day4/libraries
-	url = https://github.com/dafny-lang/libraries

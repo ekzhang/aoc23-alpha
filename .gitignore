@@ -10,5 +10,6 @@ carp-*/
 out/
 
 # Day 4
-main-java/
-main.jar
+day4/main.js
+day4/main.out.js
+node_modules/
