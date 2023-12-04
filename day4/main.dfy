@@ -55,7 +55,7 @@ method ParseInt(s: string) returns (result: int)
     }
   }
   if |found| == 0 {
-    print s, '|', found, '|', "warn: no numeral found in ParseInt\n";
+    print "warn: no numeral found in ParseInt\n";
     return 0; // Special case of the empty string
   }
   result := StringToInt(found);
