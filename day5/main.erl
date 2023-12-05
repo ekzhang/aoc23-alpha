@@ -119,5 +119,5 @@ start() ->
     io:fwrite("~p\n", [lists:min(map(F, Seeds))]),
 
     % Part 2
-    G = fun({Start, End}) -> min_range_to_location(Start, End, Maps) end,
-    io:fwrite("~p\n", [lists:min(map(G, [{S, S + L} || {S, L} <- pairs(Seeds)]))]).
+    G = fun({S, L}) -> min_range_to_location(S, S + L, Maps) end,
+    io:fwrite("~p\n", [lists:min(map(G, pairs(Seeds)))]).
