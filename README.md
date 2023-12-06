@@ -73,5 +73,6 @@ This is my runtime environment for each language on macOS Ventura v13.2.1, M1 / 
 - **Day 3:** [Carp v0.5.5](https://github.com/carp-lang/Carp), binary installation in script
 - **Day 4:** [Dafny 4.3.0](https://github.com/dafny-lang/dafny) via VSCode extension, with dotnet-sdk 8.0.100 installed via Homebrew Cask
 - **Day 5:** Erlang/OTP 26.0.2, installed from Homebrew
+- **Day 6:** [Flix v0.42.0](https://github.com/flix/flix/releases/download/v0.42.0/flix.jar), included in script, with Java runtime OpenJDK 21.0.1 from Homebrew.
 
 Note that while exact version numbers are provided above, the code will likely work with newer versions of these languages as well. Also, assume a global dependency on Python 3.11+, Node v20, and NPM v9.

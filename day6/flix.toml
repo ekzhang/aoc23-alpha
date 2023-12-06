@@ -1,0 +1,6 @@
+[package]
+name = "day6"
+description = "Advent of Code Day 6 solution"
+version = "0.1.0"
+flix = "0.42.0"
+authors = []
