@@ -43,7 +43,7 @@ parse_input() ->
             case string:prefix(TrimmedLine, "seeds:") /= nomatch of
                 true ->
                     [_ | Seeds] = string:tokens(TrimmedLine, " "),
-                    SeedsInt = [list_to_integer(S) || S <- Seeds],
+                    SeedsInt = lists:map(fun list_to_integer/1, Seeds),
                     Rest = parse_input(),
                     #data{seeds = SeedsInt, maps = Rest#data.maps};
                 false ->
@@ -52,10 +52,9 @@ parse_input() ->
                             #data{maps = Maps} = parse_input(),
                             #data{maps = [[] | Maps]};
                         false ->
-                            [X, Y, Z] = [
-                                list_to_integer(S)
-                             || S <- string:tokens(TrimmedLine, " ")
-                            ],
+                            [X, Y, Z] = lists:map(
+                                fun list_to_integer/1, string:tokens(TrimmedLine, " ")
+                            ),
                             #data{maps = [CurrentMap | Maps]} = parse_input(),
                             #data{maps = [[{X, Y, Z} | CurrentMap] | Maps]}
                     end
@@ -73,9 +72,6 @@ to_location(Num, [[{X, Y, Z} | Map] | Maps]) ->
         true ->
             to_location(Num, [Map | Maps])
     end.
-
-map(F, [H | T]) -> [F(H) | map(F, T)];
-map(_, []) -> [].
 
 min_range_to_location(Start, _, []) ->
     Start;
@@ -116,8 +112,8 @@ start() ->
 
     % Part 1
     F = fun(S) -> to_location(S, Maps) end,
-    io:fwrite("~p\n", [lists:min(map(F, Seeds))]),
+    io:fwrite("~p\n", [lists:min(lists:map(F, Seeds))]),
 
     % Part 2
     G = fun({S, L}) -> min_range_to_location(S, S + L, Maps) end,
-    io:fwrite("~p\n", [lists:min(map(G, pairs(Seeds)))]).
+    io:fwrite("~p\n", [lists:min(lists:map(G, pairs(Seeds)))]).
