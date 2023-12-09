@@ -17,7 +17,7 @@ As usual, the hardest problems are at the end, so it's a balance between coolnes
 5. `E` is for **Erlang** — _practical functional programming for a parallel world_
 6. `F` is for **Flix** — _polymorphic effect system and first-class Datalog constraints_
 7. `G` is for **Gleam** — _a friendly language for building type-safe systems that scale_
-8. `H` is for **Hylo** — _mutable value semantics and generic programming_
+8. `H` is for **Haskell** — [GHC 9.8.1](https://www.haskell.org/ghc/)
 9. `I` is for **Io** — _dynamic prototypes in the same realm as Smalltalk and Self_
 10. `J` is for **Java bytecode** — [JASM assembler](https://github.com/roscopeco/jasm)
 11. `K` is for **Koka** — _functional language with effects_
@@ -75,5 +75,6 @@ This is my runtime environment for each language on macOS Ventura v13.2.1, M1 / 
 - **Day 5:** Erlang/OTP 26.0.2, installed from Homebrew
 - **Day 6:** [Flix 0.42.0](https://github.com/flix/flix/releases/tag/v0.42.0), included in script, with Java runtime OpenJDK 21.0.1 from Homebrew.
 - **Day 7:** [Gleam 0.32.4](https://gleam.run/), installed from Homebrew, with Erlang/OTP 26.0.2
+- **Day 8:** GHC 9.8.1, Cabal 3.10.2.0, installed via GHCup 0.1.20.0; with LLVM 12.0.1
 
 Note that while exact version numbers are provided above, the code will likely work with newer versions of these languages as well. Also, assume a global dependency on Python 3.11+, Node v20, and NPM v9.

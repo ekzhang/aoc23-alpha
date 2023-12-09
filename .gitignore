@@ -17,3 +17,6 @@ node_modules/
 # Day 5
 main.beam
 erl_crash.dump
+
+# Day 8
+dist-newstyle/
