@@ -69,10 +69,11 @@ This takes about a minute on my computer, since it needs to compile code in addi
 This is my runtime environment for each language on macOS Ventura v13.2.1, M1 / ARM64 processor, with Rosetta 2 and Xcode CLT. I only used languages that I could install on my own machine; these instructions aren't guaranteed to work on other operating systems or processor architectures.
 
 - **Day 1:** Apple clang version 14.0.3, target arm64-apple-darwin22.3.0
-- **Day 2:** [CBQN v0.4.0](https://github.com/dzaima/CBQN), vendored as submodule and built with Make
-- **Day 3:** [Carp v0.5.5](https://github.com/carp-lang/Carp), binary installation in script
+- **Day 2:** [CBQN 0.4.0](https://github.com/dzaima/CBQN), vendored as submodule and built with Make
+- **Day 3:** [Carp 0.5.5](https://github.com/carp-lang/Carp), binary installation in script
 - **Day 4:** [Dafny 4.3.0](https://github.com/dafny-lang/dafny) via VSCode extension, with dotnet-sdk 8.0.100 installed via Homebrew Cask
 - **Day 5:** Erlang/OTP 26.0.2, installed from Homebrew
-- **Day 6:** [Flix v0.42.0](https://github.com/flix/flix/releases/download/v0.42.0/flix.jar), included in script, with Java runtime OpenJDK 21.0.1 from Homebrew.
+- **Day 6:** [Flix 0.42.0](https://github.com/flix/flix/releases/tag/v0.42.0), included in script, with Java runtime OpenJDK 21.0.1 from Homebrew.
+- **Day 7:** [Gleam 0.32.4](https://gleam.run/), installed from Homebrew, with Erlang/OTP 26.0.2
 
 Note that while exact version numbers are provided above, the code will likely work with newer versions of these languages as well. Also, assume a global dependency on Python 3.11+, Node v20, and NPM v9.
