@@ -20,3 +20,7 @@ erl_crash.dump
 
 # Day 8
 dist-newstyle/
+
+# Day 10
+jasm-0.7.0/
+*.class
