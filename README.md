@@ -62,8 +62,6 @@ If you have all of the required packages for the 25 languages installed, you can
 just run-all
 ```
 
-This takes about a minute on my computer, since it needs to compile code in addition to running it.
-
 ## Runtime Environment
 
 This is my runtime environment for each language on macOS Ventura v13.2.1, M1 / ARM64 processor, with Rosetta 2 and Xcode CLT. I only used languages that I could install on my own machine; these instructions aren't guaranteed to work on other operating systems or processor architectures.
@@ -76,5 +74,6 @@ This is my runtime environment for each language on macOS Ventura v13.2.1, M1 / 
 - **Day 6:** [Flix 0.42.0](https://github.com/flix/flix/releases/tag/v0.42.0), included in script, with Java runtime OpenJDK 21.0.1 from Homebrew.
 - **Day 7:** [Gleam 0.32.4](https://gleam.run/), installed from Homebrew, with Erlang/OTP 26.0.2
 - **Day 8:** GHC 9.8.1, Cabal 3.10.2.0, installed via GHCup 0.1.20.0; with LLVM 12.0.1
+- **Day 9:** Io Programming Language, v. 20151111 installed via Homebrew for x86-64
 
 Note that while exact version numbers are provided above, the code will likely work with newer versions of these languages as well. Also, assume a global dependency on Python 3.11+, Node v20, and NPM v9.
