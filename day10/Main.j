@@ -17,7 +17,7 @@
 .super java/lang/Object
 
 
-.method static getInput()[Ljava/lang/String;
+.method static getInput()[[C
     .limit stack 16
     .limit locals 4
 
@@ -49,9 +49,10 @@ Loop:
     aload_3
     ifnull Endloop
 
-    ; %2.add(%3)
+    ; %2.add(%3.toCharArray())
     aload_2
     aload_3
+    invokevirtual java/lang/String/toCharArray()[C
     invokevirtual java/util/ArrayList.add(Ljava/lang/Object;)Z
     pop
 
@@ -61,9 +62,9 @@ Endloop:
     ; return %2.toArray()
     aload_2
     iconst_0
-    anewarray java/lang/String
+    anewarray [C
     invokevirtual java/util/ArrayList.toArray([Ljava/lang/Object;)[Ljava/lang/Object;
-    checkcast [Ljava/lang/String;
+    checkcast [[C
     areturn
 .end method
 
@@ -76,7 +77,7 @@ Endloop:
     invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
 
     getstatic java/lang/System/out Ljava/io/PrintStream;
-    invokestatic Main/getInput()[Ljava/lang/String;
+    invokestatic Main/getInput()[[C
     invokestatic java.util.Arrays/deepToString([Ljava/lang/Object;)Ljava/lang/String;
     invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
 
