@@ -1,3 +1,7 @@
 #!/bin/bash
 
-jasmin Main.j && java Main
+if [ "Main.j" -nt "Main.class" ]; then
+  jasmin Main.j
+fi
+
+java Main
