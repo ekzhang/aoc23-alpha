@@ -24,3 +24,6 @@ dist-newstyle/
 # Day 10
 jasm-0.7.0/
 *.class
+
+# Day 11
+.koka/
