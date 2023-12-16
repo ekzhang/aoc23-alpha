@@ -71,12 +71,13 @@ This is my runtime environment for each language on macOS Ventura v13.2.1, M1 / 
 - **Day 3:** [Carp 0.5.5](https://github.com/carp-lang/Carp), binary installation in script
 - **Day 4:** [Dafny 4.3.0](https://github.com/dafny-lang/dafny) via VSCode extension, with dotnet-sdk 8.0.100 installed via Homebrew Cask
 - **Day 5:** Erlang/OTP 26.0.2, installed from Homebrew
-- **Day 6:** [Flix 0.42.0](https://github.com/flix/flix/releases/tag/v0.42.0), included in script, with Java runtime OpenJDK 21.0.1 from Homebrew.
+- **Day 6:** [Flix 0.42.0](https://github.com/flix/flix/releases/tag/v0.42.0), included in script, with Java runtime OpenJDK 21.0.1 from Homebrew
 - **Day 7:** [Gleam 0.32.4](https://gleam.run/), installed from Homebrew, with Erlang/OTP 26.0.2
 - **Day 8:** GHC 9.8.1, Cabal 3.10.2.0, installed via GHCup 0.1.20.0; with LLVM 12.0.1
 - **Day 9:** Io Programming Language, v. 20151111 installed via Homebrew for x86-64
-- **Day 10:** Jasmin v2.4, from Homebrew, with OpenJDK 21.
-- **Day 11:** [Koka 2.4.2](https://koka-lang.github.io/koka/doc/book.html), installed from the script on the website.
+- **Day 10:** Jasmin v2.4, from Homebrew, with OpenJDK 21
+- **Day 11:** [Koka 2.4.2](https://koka-lang.github.io/koka/doc/book.html), installed from the script on the website
 - **Day 12:** Lean 4.3.0, installed with the [elan](https://github.com/leanprover/elan) version manager, via Homebrew
+- **Day 13:** Mojo 0.6.0 (d55c0025), via proprietary installer
 
 Note that while exact version numbers are provided above, the code will likely work with newer versions of these languages as well. Also, assume a global dependency on Python 3.11+, Node v20, and NPM v9.
