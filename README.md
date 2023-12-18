@@ -79,5 +79,6 @@ This is my runtime environment for each language on macOS Ventura v13.2.1, M1 / 
 - **Day 11:** [Koka 2.4.2](https://koka-lang.github.io/koka/doc/book.html), installed from the script on the website
 - **Day 12:** Lean 4.3.0, installed with the [elan](https://github.com/leanprover/elan) version manager, via Homebrew
 - **Day 13:** Mojo 0.6.0 (d55c0025), via proprietary installer
+- **Day 14:** Nim 2.0.0, from Homebrew
 
 Note that while exact version numbers are provided above, the code will likely work with newer versions of these languages as well. Also, assume a global dependency on Python 3.11+, Node v20, and NPM v9.
