@@ -80,5 +80,7 @@ This is my runtime environment for each language on macOS Ventura v13.2.1, M1 / 
 - **Day 12:** Lean 4.3.0, installed with the [elan](https://github.com/leanprover/elan) version manager, via Homebrew
 - **Day 13:** Mojo 0.6.0 (d55c0025), via proprietary installer
 - **Day 14:** Nim 2.0.0, from Homebrew
+- **Day 15:** OCaml 4.12.0, installed via opam 2.1.0, from Homebrew
+- **Day 16:** ponyc-release-0.55.1-arm64-darwin, from ponyup nightly-20230822, with manually patched symlinks for libressl `libcrypto.50.dylib -> libcrypto.52.dylib` and `libssl.53.dylib -> libssl.55.dylib`
 
 Note that while exact version numbers are provided above, the code will likely work with newer versions of these languages as well. Also, assume a global dependency on Python 3.11+, Node v20, and NPM v9.
