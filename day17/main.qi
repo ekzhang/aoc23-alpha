@@ -1,0 +1,146 @@
+// Qi is a programming language written in Chinese.
+//
+// The language itself is pretty small, with similar syntax to C or Python and
+// scripting influences, like arrays and dynamic typing. I guess what's unique
+// is its ability to target Chinese-native speakers.
+//
+// I don't write Chinese, so this was a lot of copy-pasting for me. It's
+// refreshing to use a nice and simple language now and then.
+//
+// I implemented Dijkstra's algorithm with a binary heap. Surprised how well
+// Copilot was able to start writing code after just a few examples of using
+// control flow and keywords, since it knows Chinese better than me.
+//
+// By the way, I think there's some kind of bug in the Qi interpreter, since
+// my program has nondeterministic incorrect output 50% of the time.
+
+功能 toints（line）「
+    变量 ints = 【】
+    对于（变量 i = 0；i 小 line。长度（）；i++）「
+        ints。推（"0123456789"。指数（line【i】））
+    」
+    返回 ints
+」
+
+变量 grid = 【】
+
+而（真）「
+    变量 s = 系统。扫描（）
+    如果（s 等 "完毕"）「
+        打断
+    」
+    // Bug workaround in Qi: 扫描 (scanNative) only reads 99 characters, and deletes the next one.
+    s += 系统。扫描（）
+    grid。推（toints（s））
+」
+
+变量 n = grid。长度（）
+变量 m = grid【0】。长度（）
+
+// 系统。打印行（grid）
+// 系统。打印行（n）
+// 系统。打印行（m）
+
+变量 dirs = 【【-1，0】，【0，-1】，【1，0】，【0，1】】 // Up, left, down, right
+
+功能 swap（q，i，j）「
+    变量 temp = q【i】
+    q【i】 = q【j】
+    q【j】 = temp
+」
+
+// Binary heap push based on pairs of (distance, position)
+功能 pushq（q，dist，pos）「
+    变量 i = q。长度（）
+    q。推（【dist，pos】）
+    而（i 大 0 和 q【i】【0】 小 q【（i - 1）位右移 1】【0】）「
+        swap（q，i，（i - 1）位右移 1）
+        i = （i - 1）位右移 1
+    」
+」
+
+// Binary heap pop based on pairs of (distance, position)
+功能 popq（q）「
+    变量 i = 0
+    变量 ret = q【0】
+    q【0】 = q【q。长度（） - 1】
+    q。弹（）
+    而（真）「
+        变量 left = i * 2 + 1
+        变量 right = i * 2 + 2
+        如果（left 大等 q。长度（））「
+            打断
+        」
+        变量 next = left
+        如果（right 小 q。长度（） 和 q【right】【0】 小 q【left】【0】）「
+            next = right
+        」
+        如果（q【i】【0】 大 q【next】【0】）「
+            swap（q，i，next）
+            i = next
+        」否则「
+            打断
+        」
+    」
+    返回 ret
+」
+
+功能 dijkstra（minlen，maxlen）「
+    变量 dists = 【】 // int[n][m][4]
+    对于（变量 i = 0；i 小 n；i++）「
+        dists。推（【】）
+        对于（变量 j = 0；j 小 m；j++）「
+            dists【i】。推（【】）
+            对于（变量 k = 0；k 小 4；k++）「
+                dists【i】【j】。推（999999999）
+            」
+        」
+    」
+    dists【0】【0】【2】 = 0 // Starting position, down
+    dists【0】【0】【3】 = 0 // Starting position, right
+
+    变量 q = 【】 // Binary heap
+    pushq（q，0，【0，0，2】）
+    pushq（q，0，【0，0，3】）
+
+    而（q。长度（） 大 0）「
+        变量 cur = popq（q）
+        变量 dist = cur【0】
+        变量 i = cur【1】【0】
+        变量 j = cur【1】【1】
+        变量 dir = cur【1】【2】
+        如果（i 等 n - 1 和 j 等 m - 1）「
+            返回 dist
+        」
+        如果（dists【i】【j】【dir】 小 dist）「
+            继续
+        」
+        变量 ndist = dist
+        对于（变量 k = 1；k 小等 maxlen；k++）「
+            变量 ni = i + k * dirs【dir】【0】
+            变量 nj = j + k * dirs【dir】【1】
+            如果（ni 大等 0 和 ni 小 n 和 nj 大等 0 和 nj 小 m）「
+                ndist += grid【ni】【nj】
+                // if k 大等 minlen
+                如果（k 大等 minlen）「
+                    // You can either turn left or right, but not 180 degrees.
+                    如果（ndist 小 dists【ni】【nj】【（dir + 1） % 4】）「
+                        dists【ni】【nj】【（dir + 1） % 4】 = ndist
+                        pushq（q，ndist，【ni，nj，（dir + 1） % 4】）
+                    」
+                    如果（ndist 小 dists【ni】【nj】【（dir + 3） % 4】）「
+                        dists【ni】【nj】【（dir + 3） % 4】 = ndist
+                        pushq（q，ndist，【ni，nj，（dir + 3） % 4】）
+                    」
+                」
+            」
+        」
+    」
+」
+
+
+// Part 1
+系统。打印行（dijkstra（1，3））
+
+// Part 2
+系统。打印行（dijkstra（4，10））

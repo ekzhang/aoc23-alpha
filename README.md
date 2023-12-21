@@ -26,7 +26,7 @@ As usual, the hardest problems are at the end, so it's a balance between coolnes
 14. `N` is for **Nim** — _compiled, garbage-collected systems programming_
 15. `O` is for **OCaml** — [OCaml 5.1.0](https://ocaml.org/releases/5.1.0)
 16. `P` is for **Pony** — _capabilities-secure, high-performance actors_
-17. `Q` is for **Quadro** — [Rust-CUDA](https://github.com/Rust-GPU/Rust-CUDA) (yes, this is a stretch)
+17. `Q` is for **Qi** — _lightweight, fast interpreted language written in Chinese_
 18. `R` is for **Raku** — _formerly known as Perl 6_
 19. `S` is for **Swift** — [Swift 5.9](https://www.swift.org/blog/swift-5.9-released/)
 20. `T` is for **Tcl** — _a very simple programming language_
@@ -82,5 +82,6 @@ This is my runtime environment for each language on macOS Ventura v13.2.1, M1 / 
 - **Day 14:** Nim 2.0.0, from Homebrew
 - **Day 15:** OCaml 4.12.0, installed via opam 2.1.0, from Homebrew
 - **Day 16:** ponyc-release-0.55.1-arm64-darwin, from ponyup nightly-20230822, with manually patched symlinks for libressl `libcrypto.50.dylib -> libcrypto.52.dylib` and `libssl.53.dylib -> libssl.55.dylib`
+- **Day 17:** [Qi 21b3195](https://github.com/AnonymousAAArdvark/qi/tree/21b3195bb315b4cec0568f2814cc32d940b03657), vendored as submodule and built with Make
 
 Note that while exact version numbers are provided above, the code will likely work with newer versions of these languages as well. Also, assume a global dependency on Python 3.11+, Node v20, and NPM v9.

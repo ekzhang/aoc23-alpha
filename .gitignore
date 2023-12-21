@@ -33,3 +33,6 @@ main.cmi
 main.cmx
 main.o
 _build/
+
+# Day 17
+day17/build/
