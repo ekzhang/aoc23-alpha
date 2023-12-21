@@ -83,5 +83,6 @@ This is my runtime environment for each language on macOS Ventura v13.2.1, M1 / 
 - **Day 15:** OCaml 4.12.0, installed via opam 2.1.0, from Homebrew
 - **Day 16:** ponyc-release-0.55.1-arm64-darwin, from ponyup nightly-20230822, with manually patched symlinks for libressl `libcrypto.50.dylib -> libcrypto.52.dylib` and `libssl.53.dylib -> libssl.55.dylib`
 - **Day 17:** [Qi 21b3195](https://github.com/AnonymousAAArdvark/qi/tree/21b3195bb315b4cec0568f2814cc32d940b03657), vendored as submodule and built with Make
+- **Day 18:** Rakudo 2023.11 from Homebrew, implementing Raku 6.d
 
 Note that while exact version numbers are provided above, the code will likely work with newer versions of these languages as well. Also, assume a global dependency on Python 3.11+, Node v20, and NPM v9.
