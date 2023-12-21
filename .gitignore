@@ -27,3 +27,9 @@ jasm-0.7.0/
 
 # Day 11
 .koka/
+
+# Day 15
+main.cmi
+main.cmx
+main.o
+_build/
