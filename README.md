@@ -90,6 +90,6 @@ This is my runtime environment for each language on macOS Ventura v13.2.1, M1 / 
 - **Day 22:** TBD
 - **Day 23:** Rust 1.72.1, with Wasmtime 16.0.0
 - **Day 24:** Yuescript 0.21.3, vendored as submodule and built with Make, and Lua 5.4.6
-- **Day 25:** TBD
+- **Day 25:** Zig 0.11.0, from release binary (zigup)
 
 Note that while exact version numbers are provided above, the code will likely work with newer versions of these languages as well. Also, assume a global dependency on Python 3.11+, Node v20, and NPM v9.
