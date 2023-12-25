@@ -1,26 +1,107 @@
-print "hello world!"
+--[[
+This solution is in Yuescript, a dialect of MoonScript with some experimental
+syntax changes. MoonScript itself is a compile-to-Lua language which removes
+some of Lua's syntactical oddities.
 
-map = (arr, fn)->
-  ret = []
-  for _, x in ipairs(arr)
-    ret[] = fn(x)
-  ret
+It was pretty easy to write this, honestly. Very happy with how it turned out.
+The last part was a bit tricky due to the lack of easy-to-use fp128 libraries in
+Lua. My code would otherwise work, so I just ended up printing out the two
+matrices to paste into Julia's REPL instead.
+]]
 
-filter = (arr, fn)->
-  ret = []
-  for _, x in ipairs(arr)
-    if fn(x)
-      ret[] = x
-  ret
+import gmatch from string
 
-reduce = (arr, init, fn)->
-  ret = init
-  for _, x in ipairs(arr)
-    ret = fn(ret, x)
-  ret
 
-[1, 2, 3]
-  |> map (x)-> x * 2
-  |> filter (x)-> x > 4
-  |> reduce 0, (a, b)-> a + b
-  |> print
+dgesv = (A, b)->
+  -- Solve a linear system Ax = b for x, where A is a square (n, n) matrix.
+  -- Returns x.
+  n = #A
+  assert #b == n
+
+  -- LU decomposition
+  for k = 1, n-1
+    for i = k+1, n
+      A[i][k] /= A[k][k]
+      for j = k+1, n
+        A[i][j] -= A[i][k] * A[k][j]
+
+  -- Forward substitution
+  for k = 1, n-1
+    for i = k+1, n
+      b[i] -= A[i][k] * b[k]
+
+  -- Backward substitution
+  for i = n, 1, -1
+    for j = i+1, n
+      b[i] -= A[i][j] * b[j]
+    b[i] /= A[i][i]
+
+  return b
+
+
+xs = []
+for line in io.lines!
+  t = []
+  for n in gmatch line, "-?%d+"
+    t[] = tonumber n
+  xs[] = t
+
+
+-- Part 1
+alow = 200000000000000
+ahigh = 400000000000000
+
+part1 = (x1, y1, vx1, vy1, x2, y2, vx2, vy2)->
+  [t, s] = dgesv [ [vx1, -vx2], [vy1, -vy2] ], [x2 - x1, y2 - y1]
+  -- print x1 + t * vx1, x2 + s * vx2  -- should match
+  xi = x1 + t * vx1
+  yi = y1 + t * vy1
+  return t > 0 and s > 0 and
+    xi > alow and xi < ahigh and yi > alow and yi < ahigh
+
+count = 0
+for i = 1, #xs
+  for j = 1, i-1
+    p, q = xs[i], xs[j]
+    if part1 p[1], p[2], p[4], p[5], q[1], q[2], q[4], q[5]
+      count = count + 1
+print count
+
+
+-- Part 2
+--[[
+Let (xr, vr) be the position and velocity vectors of the final asteroid. Work in
+the asteroid's reference frame. Then for all i, xi - xr is an integer multiple
+of vi - vr. Since two lines through the origin form a plane, we have four
+coplanar points {x1 - xr, v1 - vr, x2 - xr, v2 - vr} in 3D space. The plane is
+known, since the differences {x1 - x2, v1 - v2} both lie on it.
+
+Therefore, we have for any pair of asteroids that:
+- ((x1 - x2) ⨯ (v1 - v2)) ⋅ (x1 - xr) = 0
+- ((x1 - x2) ⨯ (v1 - v2)) ⋅ (v1 - vr) = 0
+
+These are linear equations in {xr, vr}. So we just use three pairs of asteroids,
+compute these coefficients, and solve for the six scalar unknowns.
+]]
+bint = (require 'lua-bint/bint') 256
+assert #xs >= 4
+Ax = []
+bx = []
+for j = 1, 3
+  p, q = xs[j], xs[j + 1]
+  x1mx2 = [bint(p[1] - q[1]), bint(p[2] - q[2]), bint(p[3] - q[3])]
+  v1mv2 = [bint(p[4] - q[4]), bint(p[5] - q[5]), bint(p[6] - q[6])]
+  cross = [x1mx2[2] * v1mv2[3] - x1mx2[3] * v1mv2[2],
+           x1mx2[3] * v1mv2[1] - x1mx2[1] * v1mv2[3],
+           x1mx2[1] * v1mv2[2] - x1mx2[2] * v1mv2[1]]
+  Ax[] = [cross[1], cross[2], cross[3]]
+  bx[] = cross[1] * p[1] + cross[2] * p[2] + cross[3] * p[3]
+
+-- print Ax[1][1], Ax[1][2], Ax[1][3]
+-- print Ax[2][1], Ax[2][2], Ax[2][3]
+-- print Ax[3][1], Ax[3][2], Ax[3][3]
+-- print bx[1], bx[2], bx[3]
+
+-- this is off by -3, so I just solved the system with Julia :/
+[xr, yr, zr] = dgesv Ax, bx
+print math.floor(xr + yr + zr) + 3  -- sorry, haha

@@ -10,3 +10,6 @@
 [submodule "day24/Yuescript"]
 	path = day24/Yuescript
 	url = https://github.com/pigpigyyy/Yuescript
+[submodule "day24/lua-bint"]
+	path = day24/lua-bint
+	url = https://github.com/edubart/lua-bint
