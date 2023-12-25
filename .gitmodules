@@ -7,3 +7,6 @@
 [submodule "day17/qi"]
 	path = day17/qi
 	url = https://github.com/AnonymousAAArdvark/qi
+[submodule "day24/Yuescript"]
+	path = day24/Yuescript
+	url = https://github.com/pigpigyyy/Yuescript

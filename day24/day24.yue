@@ -1,0 +1,26 @@
+print "hello world!"
+
+map = (arr, fn)->
+  ret = []
+  for _, x in ipairs(arr)
+    ret[] = fn(x)
+  ret
+
+filter = (arr, fn)->
+  ret = []
+  for _, x in ipairs(arr)
+    if fn(x)
+      ret[] = x
+  ret
+
+reduce = (arr, init, fn)->
+  ret = init
+  for _, x in ipairs(arr)
+    ret = fn(ret, x)
+  ret
+
+[1, 2, 3]
+  |> map (x)-> x * 2
+  |> filter (x)-> x > 4
+  |> reduce 0, (a, b)-> a + b
+  |> print
