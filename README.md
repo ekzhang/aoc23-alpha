@@ -86,5 +86,6 @@ This is my runtime environment for each language on macOS Ventura v13.2.1, M1 / 
 - **Day 18:** Rakudo 2023.11 from Homebrew, implementing Raku 6.d
 - **Day 19:** Apple Swift 5.8.1, targeting arm64-apple-macosx13.0
 - **Day 20:** Tcl 8.6.13 from Homebrew
+- **Day 23:** Rust 1.72.1, with Wasmtime 16.0.0
 
 Note that while exact version numbers are provided above, the code will likely work with newer versions of these languages as well. Also, assume a global dependency on Python 3.11+, Node v20, and NPM v9.

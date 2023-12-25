@@ -36,3 +36,7 @@ _build/
 
 # Day 17
 day17/build/
+
+# Day 23
+target/
+Cargo.lock
